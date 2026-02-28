@@ -1,0 +1,23 @@
+package com.spring.ollama.spring_ai_ollama.controller;
+
+import com.spring.ollama.spring_ai_ollama.service.EmailService;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/ai")
+public class EmailController {
+
+    private final EmailService emailService;
+
+    public EmailController(EmailService emailService) {
+        this.emailService = emailService;
+    }
+
+    @GetMapping("/email")
+    public String generateEmail(@RequestParam String topic) {
+        return emailService.generateEmail(topic);
+    }
+}
